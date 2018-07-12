@@ -37,12 +37,23 @@ namespace TicTacToe
 		public void Initialise()
 		{
 			bool validInput = false;
+			int rows = 0;
+			int columns = 0;
 
 			do
 			{
 				Console.Write("Enter the number of rows for the board to have: ");
 
-				int rows = Convert.ToInt32(Console.ReadLine());
+				try
+				{
+					rows = Convert.ToInt32(Console.ReadLine());
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("An integer must be entered.");
+
+					continue;
+				}
 
 				if (rows < MIN_ROWS)
 				{
@@ -67,7 +78,16 @@ namespace TicTacToe
 			{
 				Console.Write("Enter the number of columns for the board to have: ");
 
-				int columns = Convert.ToInt32(Console.ReadLine());
+				try
+				{
+					columns = Convert.ToInt32(Console.ReadLine());
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("An integer must be entered.");
+
+					continue;
+				}
 
 				if (columns < MIN_COLUMNS)
 				{
@@ -107,7 +127,16 @@ namespace TicTacToe
 			{
 				Console.Write("Enter the amount of tokens in a row in order to win: ");
 
-				winLength = Convert.ToInt32(Console.ReadLine());
+				try
+				{
+					winLength = Convert.ToInt32(Console.ReadLine());
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("An integer must be entered.");
+
+					continue;
+				}
 
 				if (winLength < MIN_LENGTH)
 				{

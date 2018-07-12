@@ -42,7 +42,18 @@ namespace TicTacToe
 				{
 					Console.Write("Do you want to play again (y/n): ");
 
-					char userInput = Convert.ToChar(Console.ReadLine());
+					char userInput = '\0';
+
+					try
+					{
+						userInput = Convert.ToChar(Console.ReadLine());
+					}
+					catch (FormatException)
+					{
+						Console.WriteLine("A character must be entered.");
+
+						continue;
+					}
 
 					if ((userInput != 'y') && (userInput != 'Y') && (userInput != 'n') && (userInput != 'N'))
 					{
@@ -128,7 +139,7 @@ namespace TicTacToe
 			const int MAX_PLAYERS = 5;
 
 			bool validInput = false;
-			int playerCount;
+			int playerCount = 0;
 
 			Console.Clear();
 
@@ -136,7 +147,16 @@ namespace TicTacToe
 			{
 				Console.Write("Enter the number of players: ");
 
-				playerCount = Convert.ToInt32(Console.ReadLine());
+				try
+				{
+					playerCount = Convert.ToInt32(Console.ReadLine());
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("An integer must be entered.");
+
+					continue;
+				}
 
 				if (playerCount < MIN_PLAYERS)
 				{
@@ -170,7 +190,17 @@ namespace TicTacToe
 				do
 				{
 					Console.Write($"Enter the symbol for {playerList[i].Name}: ");
-					playerList[i].Symbol = Convert.ToChar(Console.ReadLine());
+
+					try
+					{
+						playerList[i].Symbol = Convert.ToChar(Console.ReadLine());
+					}
+					catch (FormatException)
+					{
+						Console.WriteLine("A character must be entered.");
+
+						continue;
+					}
 
 					if (ValidSymbol(playerList[i]))
 					{
@@ -241,13 +271,22 @@ namespace TicTacToe
 		private void GetCoordinate(char coordinate)
 		{
 			bool validInput = false;
-			int currentCoordinate;
+			int currentCoordinate = 0;
 
 			do
 			{
 				Console.Write($"Enter the {coordinate}-coordinate of the tile you want: ");
 
-				currentCoordinate = Convert.ToInt32(Console.ReadLine());
+				try
+				{
+					currentCoordinate = Convert.ToInt32(Console.ReadLine());
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("An integer must be entered.");
+
+					continue;
+				}				
 
 				if (coordinate == 'x')
 				{
